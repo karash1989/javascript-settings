@@ -23,7 +23,7 @@ create(DslContext.projectId, BuildType({
             minRequiredVersion = "5.1"
             scriptMode = script {
                 content = """
-                    Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+                    Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
                     ${'$'}username = "admin"
                     ${'$'}password = "Sosi1989hui2"
                     ${'$'}authInfo = ${'$'}username + ":" + ${'$'}password
