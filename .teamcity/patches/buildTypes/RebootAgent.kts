@@ -51,7 +51,12 @@ create(DslContext.projectId, BuildType({
             }
         }
         script {
-            scriptContent = "http://127.0.0.1:{8111}/cli/agentCLI/restart?{EPBYMINW0119}"
+            scriptContent = """
+                udclient -username admin -password Sosi1989hui2 
+                  -weburl http://127.0.0.1:811
+                  restartAgent
+                  -agent EPBYMINW0119
+            """.trimIndent()
         }
     }
 
