@@ -52,14 +52,6 @@ create(DslContext.projectId, BuildType({
                 """.trimIndent()
             }
         }
-        powerShell {
-            scriptMode = script {
-                content = """
-                    Stop-Service TCBuildAgent
-                    Start-Service TCBuildAgent
-                """.trimIndent()
-            }
-        }
     }
 
     dependencies {
