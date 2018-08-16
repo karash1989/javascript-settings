@@ -3,7 +3,6 @@ package patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.powerShell
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
 /*
@@ -49,14 +48,6 @@ create(DslContext.projectId, BuildType({
                     ${'$'}sr.ReadToEnd();
                 """.trimIndent()
             }
-        }
-        script {
-            scriptContent = """
-                udclient -username admin -password Sosi1989hui2 
-                  -weburl http://127.0.0.1:811
-                  restartAgent
-                  -agent EPBYMINW0119
-            """.trimIndent()
         }
     }
 
