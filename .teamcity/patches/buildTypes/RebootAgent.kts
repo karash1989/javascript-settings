@@ -3,6 +3,7 @@ package patches.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.powerShell
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
 /*
@@ -48,6 +49,9 @@ create(DslContext.projectId, BuildType({
                     ${'$'}sr.ReadToEnd();
                 """.trimIndent()
             }
+        }
+        script {
+            scriptContent = "PUT http://127.0.0.1:{8111}/cli/agentCLI/restart?{EPBYMINW0119}"
         }
     }
 
