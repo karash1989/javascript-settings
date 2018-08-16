@@ -24,7 +24,7 @@ changeBuildType(RelativeId("01FastTests")) {
                         ${'$'}authInfo = ${'$'}username + ":" + ${'$'}password
                         ${'$'}authInfo = [System.Convert]::ToBase64String([System.Text.Encoding]::Default.GetBytes(${'$'}authInfo))
                         
-                        ${'$'}uri = "localhost:8111/httpAuth/app/rest/agents/name:EPBYMINW0119/id"
+                        ${'$'}uri = "http://127.0.0.1:8111/httpAuth/app/rest/agents/name:EPBYMINW0119/id"
                         
                         #With thanks to Ivan Leonenko Blog https://ileonenko.wordpress.com/2012/09/21/start-teamcity-build-via-web-request-with-powershell-script/
                         ${'$'}webRequest = [System.Net.WebRequest]::Create(${'$'}uri)
@@ -36,7 +36,7 @@ changeBuildType(RelativeId("01FastTests")) {
                         [string] ${'$'}id = ${'$'}sr.ReadToEnd();
                         Write-Output "Rebooting Agent ID: ${'$'}id"
                         
-                        ${'$'}uri = "localhost:8111/httpAuth/remoteAccess/reboot.html?agent=${'$'}id&rebootAfterBuild=true"
+                        ${'$'}uri = "http://127.0.0.1:8111/httpAuth/remoteAccess/reboot.html?agent=${'$'}id&rebootAfterBuild=true"
                         
                         ${'$'}webRequest = [System.Net.WebRequest]::Create(${'$'}uri)
                         ${'$'}webRequest.Headers["Authorization"] = "Basic " + ${'$'}authInfo
