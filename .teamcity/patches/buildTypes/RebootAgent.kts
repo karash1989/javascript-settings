@@ -12,5 +12,9 @@ in the root project, and delete the patch script.
 create(DslContext.projectId, BuildType({
     id("RebootAgent")
     name = "Reboot agent"
+
+    vcs {
+        root(RelativeId("HttpsGithubComG0t4teamcityCourseCards"))
+    }
 }))
 
