@@ -52,5 +52,11 @@ create(DslContext.projectId, BuildType({
             }
         }
     }
+
+    dependencies {
+        snapshot(RelativeId("01FastTests")) {
+            runOnSameAgent = true
+        }
+    }
 }))
 
