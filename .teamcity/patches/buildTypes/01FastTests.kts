@@ -51,6 +51,7 @@ changeBuildType(RelativeId("01FastTests")) {
         insert(1) {
             powerShell {
                 id = "RUNNER_9"
+                enabled = false
                 scriptMode = script {
                     content = """
                         ${'$'}name = get-service | where {${'$'}_.Name -like "*BuildAgent*"}
