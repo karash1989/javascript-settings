@@ -52,5 +52,11 @@ create(DslContext.projectId, BuildType({
             }
         }
     }
+
+    dependencies {
+        snapshot(RelativeId("02Chrome")) {
+            runOnSameAgent = true
+        }
+    }
 }))
 
