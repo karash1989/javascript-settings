@@ -52,7 +52,10 @@ changeBuildType(RelativeId("01FastTests")) {
             powerShell {
                 id = "RUNNER_9"
                 scriptMode = script {
-                    content = "Get-Service *BuildAgent*"
+                    content = """
+                        ${'$'}name = get-service | where {${'$'}_.Name -like "*BuildAgent*"}
+                        Restart-Service ${'$'}name
+                    """.trimIndent()
                 }
             }
         }
