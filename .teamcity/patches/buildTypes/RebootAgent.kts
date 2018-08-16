@@ -40,7 +40,7 @@ create(DslContext.projectId, BuildType({
                     [string] ${'$'}id = ${'$'}sr.ReadToEnd();
                     Write-Output "Rebooting Agent ID: ${'$'}id"
                     
-                    ${'$'}uri = "http://127.0.0.1:8111/httpAuth/remoteAccess/reboot.html?agent=${'$'}id&rebootAfterBuild=true"
+                    ${'$'}uri = "http://127.0.0.1:8111/httpAuth/remoteAccess/reboot.html?agent=1&rebootAfterBuild=true"
                     
                     ${'$'}webRequest = [System.Net.WebRequest]::Create(${'$'}uri)
                     ${'$'}webRequest.Headers["Authorization"] = "Basic " + ${'$'}authInfo
