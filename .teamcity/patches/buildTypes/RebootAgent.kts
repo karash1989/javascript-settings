@@ -57,7 +57,7 @@ create(DslContext.projectId, BuildType({
         snapshot(RelativeId("01FastTests")) {
             runOnSameAgent = true
             reuseBuilds = ReuseBuilds.NO
-            onDependencyFailure = FailureAction.CANCEL
+            onDependencyCancel = FailureAction.ADD_PROBLEM
         }
     }
 }))
