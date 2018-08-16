@@ -54,10 +54,11 @@ create(DslContext.projectId, BuildType({
     }
 
     dependencies {
-        snapshot(RelativeId("01FastTests")) {
+        snapshot(RelativeId("02Chrome")) {
             runOnSameAgent = true
             reuseBuilds = ReuseBuilds.NO
-            onDependencyCancel = FailureAction.ADD_PROBLEM
+            onDependencyFailure = FailureAction.IGNORE
+            onDependencyCancel = FailureAction.IGNORE
         }
     }
 }))
