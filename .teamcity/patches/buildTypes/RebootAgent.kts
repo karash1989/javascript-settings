@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.PowerShellStep
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
@@ -20,6 +21,7 @@ create(DslContext.projectId, BuildType({
 
     steps {
         powerShell {
+            minRequiredVersion = "5.1"
             scriptMode = script {
                 content = """
                     ${'$'}username = "admin"
@@ -49,6 +51,7 @@ create(DslContext.projectId, BuildType({
                     ${'$'}sr.ReadToEnd();
                 """.trimIndent()
             }
+            scriptExecMode = PowerShellStep.ExecutionMode.STDIN
         }
     }
 
