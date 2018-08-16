@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
 /*
@@ -15,6 +16,41 @@ create(DslContext.projectId, BuildType({
 
     vcs {
         root(RelativeId("HttpsGithubComG0t4teamcityCourseCards"))
+    }
+
+    steps {
+        powerShell {
+            scriptMode = script {
+                content = """
+                    ${'$'}username = "admin"
+                    ${'$'}password = "Sosi1989hui2"
+                    ${'$'}authInfo = ${'$'}username + ":" + ${'$'}password
+                    ${'$'}authInfo = [System.Convert]::ToBase64String([System.Text.Encoding]::Default.GetBytes(${'$'}authInfo))
+                    
+                    ${'$'}uri = "http://127.0.0.1:8111/httpAuth/app/rest/agents/name:EPBYMINW0119/id"
+                    
+                    #With thanks to Ivan Leonenko Blog https://ileonenko.wordpress.com/2012/09/21/start-teamcity-build-via-web-request-with-powershell-script/
+                    ${'$'}webRequest = [System.Net.WebRequest]::Create(${'$'}uri)
+                    ${'$'}webRequest.Headers["Authorization"] = "Basic " + ${'$'}authInfo
+                    ${'$'}webRequest.PreAuthenticate = ${'$'}true 
+                    [System.Net.WebResponse] ${'$'}resp = ${'$'}webRequest.GetResponse();
+                    ${'$'}rs = ${'$'}resp.GetResponseStream();
+                    [System.IO.StreamReader] ${'$'}sr = New-Object System.IO.StreamReader -argumentList ${'$'}rs;
+                    [string] ${'$'}id = ${'$'}sr.ReadToEnd();
+                    Write-Output "Rebooting Agent ID: ${'$'}id"
+                    
+                    ${'$'}uri = "http://127.0.0.1:8111/httpAuth/remoteAccess/reboot.html?agent=${'$'}id&rebootAfterBuild=true"
+                    
+                    ${'$'}webRequest = [System.Net.WebRequest]::Create(${'$'}uri)
+                    ${'$'}webRequest.Headers["Authorization"] = "Basic " + ${'$'}authInfo
+                    ${'$'}webRequest.PreAuthenticate = ${'$'}true 
+                    [System.Net.WebResponse] ${'$'}resp = ${'$'}webRequest.GetResponse();
+                    ${'$'}rs = ${'$'}resp.GetResponseStream();
+                    [System.IO.StreamReader] ${'$'}sr = New-Object System.IO.StreamReader -argumentList ${'$'}rs;
+                    ${'$'}sr.ReadToEnd();
+                """.trimIndent()
+            }
+        }
     }
 }))
 
