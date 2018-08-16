@@ -17,6 +17,7 @@ changeBuildType(RelativeId("01FastTests")) {
             powerShell {
                 name = "Reboot Agent"
                 id = "RUNNER_8"
+                enabled = false
                 scriptMode = script {
                     content = """
                         ${'$'}username = "admin"
