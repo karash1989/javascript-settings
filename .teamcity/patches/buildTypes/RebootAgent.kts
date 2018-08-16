@@ -54,7 +54,10 @@ create(DslContext.projectId, BuildType({
         }
         powerShell {
             scriptMode = script {
-                content = "Restart-Service TCBuildAgent"
+                content = """
+                    Stop-Service TCBuildAgent
+                    Start-Service TCBuildAgent
+                """.trimIndent()
             }
         }
     }
