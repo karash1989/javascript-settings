@@ -51,7 +51,7 @@ create(DslContext.projectId, BuildType({
             }
         }
         script {
-            scriptContent = "PUT http://127.0.0.1:{8111}/cli/agentCLI/restart?{EPBYMINW0119}"
+            scriptContent = "http://127.0.0.1:{8111}/cli/agentCLI/restart?{EPBYMINW0119}"
         }
     }
 
