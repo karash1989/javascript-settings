@@ -17,7 +17,6 @@ changeBuildType(RelativeId("01FastTests")) {
             script {
                 name = "Browser Tests"
                 id = "RUNNER_7"
-                enabled = false
                 scriptContent = "npm test -- --single-run --browsers PhantomJS --colors false --reporters teamcity"
             }
         }
