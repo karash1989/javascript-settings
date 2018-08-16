@@ -20,7 +20,6 @@ create(DslContext.projectId, BuildType({
 
     steps {
         powerShell {
-            enabled = false
             minRequiredVersion = "5.1"
             scriptMode = script {
                 content = """
