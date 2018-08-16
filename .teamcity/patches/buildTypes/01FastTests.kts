@@ -1,6 +1,7 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
 /*
@@ -9,6 +10,16 @@ To apply the patch, change the buildType with id = '01FastTests'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("01FastTests")) {
-    expectDisabledSettings()
-    updateDisabledSettings("RUNNER_7")
+    expectSteps {
+    }
+    steps {
+        insert(0) {
+            script {
+                name = "Browser Tests"
+                id = "RUNNER_7"
+                enabled = false
+                scriptContent = "npm test -- --single-run --browsers PhantomJS --colors false --reporters teamcity"
+            }
+        }
+    }
 }
