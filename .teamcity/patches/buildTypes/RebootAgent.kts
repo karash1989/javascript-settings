@@ -2,7 +2,6 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.PowerShellStep
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.powerShell
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
@@ -24,6 +23,7 @@ create(DslContext.projectId, BuildType({
             minRequiredVersion = "5.1"
             scriptMode = script {
                 content = """
+                    Set-ExecutionPolicy -ExecutionPolicy Unrestricted
                     ${'$'}username = "admin"
                     ${'$'}password = "Sosi1989hui2"
                     ${'$'}authInfo = ${'$'}username + ":" + ${'$'}password
@@ -51,7 +51,6 @@ create(DslContext.projectId, BuildType({
                     ${'$'}sr.ReadToEnd();
                 """.trimIndent()
             }
-            scriptExecMode = PowerShellStep.ExecutionMode.STDIN
         }
     }
 
