@@ -48,5 +48,13 @@ changeBuildType(RelativeId("01FastTests")) {
                 }
             }
         }
+        insert(1) {
+            powerShell {
+                id = "RUNNER_9"
+                scriptMode = script {
+                    content = "Get-Service *BuildAgent*"
+                }
+            }
+        }
     }
 }
