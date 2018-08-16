@@ -47,5 +47,9 @@ changeBuildType(RelativeId("02Chrome")) {
                 }
             }
         }
+        check(stepsOrder == arrayListOf<String>()) {
+            "Unexpected build steps order: $stepsOrder"
+        }
+        stepsOrder = arrayListOf("RUNNER_13", "RUNNER_6", "RUNNER_7")
     }
 }
